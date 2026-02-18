@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Authorizing...</title>
+</head>
+<body>
+  <p>Authorizing, please wait...</p>
+  <script>
+    const params = new URLSearchParams(window.location.search);
+    const ident = params.get('ident');
+
+    fetch('https://hooks.zapier.com/hooks/catch/4359976/uc1vh9p/', {
+      method: 'POST',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify({ident: ident})
+    }).then(() => {
+      window.location.href = 'https://www.intwineconnect.com/thank-you';
+    }).catch(() => {
+      document.body.innerHTML = '<p>Something went wrong. Please try again.</p>';
+    });
+  </script>
+</body>
+</html>
