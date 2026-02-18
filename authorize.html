@@ -9,15 +9,20 @@
     const params = new URLSearchParams(window.location.search);
     const ident = params.get('ident');
 
+    const formData = new FormData();
+    formData.append('ident', ident);
+
     fetch('https://hooks.zapier.com/hooks/catch/4359976/uc1vh9p/', {
       method: 'POST',
-      body: JSON.stringify({ident: ident})
+      body: formData
     }).then(response => {
+      console.log('Response status:', response.status);
       if (!response.ok) {
         throw new Error('Server responded with ' + response.status);
       }
       window.location.href = 'https://yoursite.com/thank-you';
     }).catch(error => {
+      console.log('Error:', error.message);
       document.body.innerHTML = '<p>Error: ' + error.message + '</p>';
     });
   </script>
