@@ -11,12 +11,13 @@
 
     fetch('https://hooks.zapier.com/hooks/catch/4359976/uc1vh9p/', {
       method: 'POST',
-      headers: {'Content-Type': 'application/json'},
       body: JSON.stringify({ident: ident})
-    }).then(() => {
-      window.location.href = 'https://www.intwineconnect.com/thank-you';
+    }).then(response => {
+      if (!response.ok) {
+        throw new Error('Server responded with ' + response.status);
+      }
+      window.location.href = 'https://yoursite.com/thank-you';
     }).catch(error => {
-      console.log('Error details:', error.message);
       document.body.innerHTML = '<p>Error: ' + error.message + '</p>';
     });
   </script>
