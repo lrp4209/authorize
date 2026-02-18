@@ -15,8 +15,9 @@
       body: JSON.stringify({ident: ident})
     }).then(() => {
       window.location.href = 'https://www.intwineconnect.com/thank-you';
-    }).catch(() => {
-      document.body.innerHTML = '<p>Something went wrong. Please try again.</p>';
+    }).catch(error => {
+      console.log('Error details:', error.message);
+      document.body.innerHTML = '<p>Error: ' + error.message + '</p>';
     });
   </script>
 </body>
