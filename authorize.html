@@ -10,22 +10,15 @@
     const ident = params.get('ident');
     const payload = { ident: ident };
 
-    console.log('Sending POST to Zapier with payload:', JSON.stringify(payload));
-    document.body.innerHTML += '<p><strong>Payload being sent:</strong> ' + JSON.stringify(payload) + '</p>';
-    
-    fetch('https://hooks.zapier.com/hooks/catch/4359976/u066j36/', {
+    fetch('https://hooks.zapier.com/hooks/catch/4359976/uc1vh9p/', {
       method: 'POST',
       mode: 'no-cors',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(payload)
     }).then(() => {
-      document.body.innerHTML += '<p><strong>Request sent successfully!</strong></p>';
-      setTimeout(() => {
-        window.location.href = 'https://www.intwineconnect.com/thank-you2';
-      }, 3000);
+      window.location.href = 'https://www.intwineconnect.com/thank-you2';
     }).catch(error => {
-      console.log('Error:', error.message);
-      document.body.innerHTML += '<p>Error: ' + error.message + '</p>';
+      document.body.innerHTML = '<p>Error: ' + error.message + '</p>';
     });
   </script>
 </body>
