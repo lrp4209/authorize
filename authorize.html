@@ -8,13 +8,10 @@
   <script>
     const params = new URLSearchParams(window.location.search);
     const ident = params.get('ident');
-
-    const formData = new FormData();
-    formData.append('ident', ident);
-
     fetch('https://hooks.zapier.com/hooks/catch/4359976/uc1vh9p/', {
       method: 'POST',
-      body: formData
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ ident: ident })
     }).then(response => {
       console.log('Response status:', response.status);
       if (!response.ok) {
